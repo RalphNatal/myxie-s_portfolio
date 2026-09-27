@@ -139,6 +139,8 @@ export interface CaseStudy {
   /** Path to an image in /public. Empty shows a generated placeholder. */
   image: string;
   imageAlt?: string;
+  /** Tools used on this project, listed in the full write-up. */
+  tools?: string[];
   /** Shows a "Sample" badge so placeholder work is never mistaken for real work. */
   isSample: boolean;
 }
@@ -200,8 +202,8 @@ export interface NavLink {
 export interface Navigation {
   links: NavLink[];
   bookCallLabel: string;
-  homeLabel: string;
   primaryNavLabel: string;
+  menuLabel: string;
   openMenuLabel: string;
   closeMenuLabel: string;
 }
@@ -229,7 +231,6 @@ export interface CaseStudiesCopy extends SectionIntro {
   resultLabel: string;
   servicesLabel: string;
   toolsLabel: string;
-  openLabel: string;
   closeLabel: string;
   ctaLabel: string;
 }

@@ -36,6 +36,7 @@
     --on-accent: 255 255 255;
     --sage: 125 143 116; /* #7D8F74 */
     --sage-strong: 74 89 67; /* #4A5943 – AA-contrast variant for text */
+    --danger: 180 35 24; /* #B42318 */
     --shadow: 43 33 27;
 
     --nav-height: 4.5rem;
@@ -55,6 +56,7 @@
     --on-accent: 26 21 18;
     --sage: 157 176 147; /* #9DB093 */
     --sage-strong: 176 196 166; /* #B0C4A6 */
+    --danger: 242 157 143; /* #F29D8F */
     --shadow: 0 0 0;
 
     color-scheme: dark;

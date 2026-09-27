@@ -37,6 +37,7 @@ export default {
           DEFAULT: token("sage"),
           strong: token("sage-strong"),
         },
+        danger: token("danger"),
       },
       fontFamily: {
         sans: ["Inter", "Inter Fallback", ...defaultTheme.fontFamily.sans],
