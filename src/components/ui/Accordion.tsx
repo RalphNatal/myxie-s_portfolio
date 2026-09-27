@@ -46,8 +46,8 @@ interface AccordionRowProps {
 }
 
 const panelVariants = {
-  open: { height: "auto", opacity: 1, visibility: "visible" },
-  closed: { height: 0, opacity: 0, transitionEnd: { visibility: "hidden" } },
+  open: { height: "auto", opacity: 1 },
+  closed: { height: 0, opacity: 0 },
 } as const;
 
 function AccordionRow({ item, baseId, isOpen, onToggle }: AccordionRowProps) {
@@ -91,7 +91,12 @@ function AccordionRow({ item, baseId, isOpen, onToggle }: AccordionRowProps) {
         animate={isOpen ? "open" : "closed"}
         variants={panelVariants}
         transition={{ duration: reduceMotion ? 0 : DURATION.base, ease: EASE_OUT }}
-        className="overflow-hidden"
+        // Collapsed panels become invisible (and so unfocusable) once the close animation ends.
+        className={cn(
+          "overflow-hidden",
+          !isOpen &&
+            "invisible [transition:visibility_0s_linear_250ms] motion-reduce:transition-none",
+        )}
       >
         <div className="pb-6 pr-12 text-muted">{item.content}</div>
       </motion.div>
