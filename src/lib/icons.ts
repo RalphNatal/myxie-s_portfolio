@@ -1,0 +1,55 @@
+import {
+  Boxes,
+  BriefcaseBusiness,
+  CalendarCheck,
+  Camera,
+  ChartColumn,
+  ClipboardList,
+  FileSpreadsheet,
+  Globe,
+  Headset,
+  Inbox,
+  Mail,
+  MessageCircle,
+  MessagesSquare,
+  PackageCheck,
+  Receipt,
+  SearchCheck,
+  ShoppingCart,
+  Store,
+  Table,
+  Truck,
+  UserRound,
+  UsersRound,
+  type LucideIcon,
+} from "lucide-react";
+import type { IconName, SocialPlatform } from "@/data/types";
+
+export const serviceIcons: Record<IconName, LucideIcon> = {
+  PackageCheck,
+  ShoppingCart,
+  Headset,
+  Boxes,
+  CalendarCheck,
+  Table,
+  ClipboardList,
+  FileSpreadsheet,
+  Inbox,
+  Mail,
+  MessagesSquare,
+  Receipt,
+  Store,
+  Truck,
+  ChartColumn,
+};
+
+// Generic icons on purpose: third-party brand logos aren't embedded anywhere on the site.
+export const socialIcons: Record<SocialPlatform, LucideIcon> = {
+  LinkedIn: UserRound,
+  Upwork: BriefcaseBusiness,
+  OnlineJobs: SearchCheck,
+  Facebook: UsersRound,
+  Instagram: Camera,
+  WhatsApp: MessageCircle,
+  Website: Globe,
+};
