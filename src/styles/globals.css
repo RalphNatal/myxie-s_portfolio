@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Metric-matched local fallbacks keep text from jumping when the web fonts swap in. */
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Helvetica");
+  size-adjust: 107%;
+  ascent-override: 90.5%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Fraunces Fallback";
+  src: local("Georgia"), local("Times New Roman");
+  size-adjust: 104%;
+  ascent-override: 94%;
+  descent-override: 24.5%;
+  line-gap-override: 0%;
+}
+
+@layer base {
+  /* Colors are stored as "R G B" channels so Tailwind opacity modifiers work (e.g. bg-accent/10). */
+  :root {
+    --canvas: 250 246 240; /* #FAF6F0 */
+    --surface: 255 255 255; /* #FFFFFF */
+    --subtle: 244 237 228; /* #F4EDE4 */
+    --line: 237 228 216; /* #EDE4D8 */
+    --ink: 43 33 27; /* #2B211B */
+    --muted: 107 94 84; /* #6B5E54 */
+    --accent: 196 103 63; /* #C4673F – brand terracotta */
+    --accent-strong: 169 82 45; /* #A9522D – AA-contrast variant for small text and button fills */
+    --accent-hover: 143 68 36; /* #8F4424 */
+    --on-accent: 255 255 255;
+    --sage: 125 143 116; /* #7D8F74 */
+    --sage-strong: 74 89 67; /* #4A5943 – AA-contrast variant for text */
+    --shadow: 43 33 27;
+
+    --nav-height: 4.5rem;
+    color-scheme: light;
+  }
+
+  .dark {
+    --canvas: 26 21 18; /* #1A1512 */
+    --surface: 36 29 24; /* #241D18 */
+    --subtle: 45 37 31; /* #2D251F */
+    --line: 61 50 42; /* #3D322A */
+    --ink: 245 238 230; /* #F5EEE6 */
+    --muted: 184 170 156; /* #B8AA9C */
+    --accent: 217 130 92; /* #D9825C */
+    --accent-strong: 224 141 103; /* #E08D67 */
+    --accent-hover: 236 162 128; /* #ECA280 */
+    --on-accent: 26 21 18;
+    --sage: 157 176 147; /* #9DB093 */
+    --sage-strong: 176 196 166; /* #B0C4A6 */
+    --shadow: 0 0 0;
+
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-canvas font-sans text-base text-ink antialiased;
+    overflow-x: clip;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-heading;
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  section[id] {
+    scroll-margin-top: var(--nav-height);
+  }
+
+  ::selection {
+    background-color: rgb(var(--accent) / 0.22);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+  }
+}
