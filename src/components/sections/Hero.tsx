@@ -10,7 +10,9 @@ import { HeroPortrait } from "./HeroPortrait";
 const { profile, stats, sections } = portfolio;
 const copy = sections.hero;
 
-// Hero content animates with CSS so it plays immediately on the prerendered page, before JavaScript loads.
+// Supporting hero details animate with CSS so they play on the prerendered page before JavaScript loads.
+// The headline and value proposition stay static: they are the Largest Contentful Paint, and fading them
+// in from transparent would delay that metric until the web fonts arrive.
 const enter = "motion-safe:animate-fade-up";
 
 export function Hero() {
@@ -25,27 +27,25 @@ export function Hero() {
           <AvailabilityPill availability={profile.availability} className={enter} />
 
           <p className={cn("mt-8 text-sm text-muted [animation-delay:60ms]", enter)}>
-            <span className="font-semibold text-ink">{getFullName(profile)}</span>
-            <span aria-hidden="true" className="mx-3 inline-block h-3.5 w-px bg-line align-middle" />
-            {profile.role}
+            <span className="block font-semibold text-ink sm:inline">{getFullName(profile)}</span>
+            <span
+              aria-hidden="true"
+              className="mx-3 hidden h-3.5 w-px bg-line align-middle sm:inline-block"
+            />
+            <span className="block sm:inline">{profile.role}</span>
           </p>
 
           <h1
             id="hero-heading"
-            className={cn(
-              "mt-4 text-[2.5rem] font-medium leading-[1.08] text-ink [animation-delay:120ms] sm:text-3xl xl:text-4xl",
-              enter,
-            )}
+            className="mt-4 text-[2.5rem] font-medium leading-[1.08] text-ink sm:text-3xl xl:text-4xl"
           >
             {profile.headline}
           </h1>
 
-          <p className={cn("mt-6 max-w-xl text-lg text-muted [animation-delay:180ms]", enter)}>
-            {profile.subheadline}
-          </p>
+          <p className="mt-6 max-w-xl text-lg text-muted">{profile.subheadline}</p>
 
           <div
-            className={cn("mt-10 flex flex-col gap-3 [animation-delay:240ms] sm:flex-row", enter)}
+            className={cn("mt-10 flex flex-col gap-3 [animation-delay:120ms] sm:flex-row", enter)}
           >
             <Button href={profile.bookingUrl} external>
               {copy.primaryCtaLabel}
@@ -59,10 +59,14 @@ export function Hero() {
             </Button>
           </div>
 
-          <HeroStats stats={stats} label={copy.statsLabel} className={cn("[animation-delay:300ms]", enter)} />
+          <HeroStats
+            stats={stats}
+            label={copy.statsLabel}
+            className={cn("[animation-delay:180ms]", enter)}
+          />
         </div>
 
-        <HeroPortrait className={cn("[animation-delay:200ms]", enter)} />
+        <HeroPortrait className={cn("[animation-delay:120ms]", enter)} />
       </Container>
     </section>
   );
@@ -98,7 +102,15 @@ function AvailabilityPill({
   );
 }
 
-function HeroStats({ stats, label, className }: { stats: Stat[]; label: string; className?: string }) {
+function HeroStats({
+  stats,
+  label,
+  className,
+}: {
+  stats: Stat[];
+  label: string;
+  className?: string;
+}) {
   return (
     <dl
       aria-label={label}
@@ -108,7 +120,10 @@ function HeroStats({ stats, label, className }: { stats: Stat[]; label: string; 
       )}
     >
       {stats.map((stat) => (
-        <div key={stat.label} className="flex flex-col-reverse gap-1 px-3 first:pl-0 sm:px-6">
+        <div
+          key={stat.label}
+          className="flex flex-col-reverse justify-end gap-1 px-3 first:pl-0 sm:px-6"
+        >
           <dt className="text-xs text-muted sm:text-sm">{stat.label}</dt>
           <dd className="font-display text-xl font-medium tracking-heading text-ink sm:text-2xl">
             {stat.value}
