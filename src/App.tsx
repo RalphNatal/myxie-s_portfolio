@@ -3,6 +3,8 @@ import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { Hero } from "@/components/sections/Hero";
+import { Process } from "@/components/sections/Process";
+import { Services } from "@/components/sections/Services";
 import { TrustBar } from "@/components/sections/TrustBar";
 
 export function App() {
