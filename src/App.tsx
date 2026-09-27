@@ -3,9 +3,12 @@ import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { CaseStudies } from "@/components/sections/CaseStudies";
+import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Process } from "@/components/sections/Process";
 import { Services } from "@/components/sections/Services";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Toolkit } from "@/components/sections/Toolkit";
 import { TrustBar } from "@/components/sections/TrustBar";
 
 export function App() {

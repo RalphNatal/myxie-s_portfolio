@@ -17,6 +17,16 @@ export function getInitials(profile: Pick<Profile, "firstName" | "lastName">): s
     .join("");
 }
 
+/** Initials from a display name like "Sarah K." → "SK". */
+export function getNameInitials(name: string): string {
+  return name
+    .split(/\s+/)
+    .map((part) => part.replace(/[^\p{L}]/gu, "").charAt(0))
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
 /** Splits "Manila, Philippines" into its city and country parts. */
 export function parseLocation(location: string): { city: string; country: string } {
   const [city = "", ...rest] = location.split(",").map((part) => part.trim());
