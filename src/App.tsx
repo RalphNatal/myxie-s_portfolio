@@ -2,6 +2,7 @@ import { MotionConfig } from "framer-motion";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Hero } from "@/components/sections/Hero";
 import { Process } from "@/components/sections/Process";
 import { Services } from "@/components/sections/Services";
