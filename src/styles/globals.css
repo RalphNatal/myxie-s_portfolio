@@ -106,3 +106,13 @@
     outline-offset: 3px;
   }
 }
+
+@layer components {
+  .field-control {
+    @apply block w-full rounded-xl border border-line bg-canvas px-4 text-base text-ink transition-colors duration-200 placeholder:text-muted/70 hover:border-muted/40 focus-visible:border-accent focus-visible:outline-offset-0;
+  }
+
+  .field-control[aria-invalid="true"] {
+    @apply border-danger;
+  }
+}

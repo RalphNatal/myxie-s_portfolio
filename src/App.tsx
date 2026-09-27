@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { CaseStudies } from "@/components/sections/CaseStudies";
+import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { FAQ } from "@/components/sections/FAQ";
 import { Hero } from "@/components/sections/Hero";
