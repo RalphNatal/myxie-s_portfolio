@@ -30,7 +30,7 @@ export function CaseStudyCard({ caseStudy, variant, onOpen }: CaseStudyCardProps
             type="button"
             onClick={onOpen}
             aria-haspopup="dialog"
-            className="text-left transition-colors duration-200 after:absolute after:inset-0 after:rounded-card after:content-[''] group-hover:text-accent-strong focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-accent"
+            className="text-left transition-colors duration-200 after:absolute after:inset-0 after:rounded-card after:content-[''] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-accent group-hover:text-accent-strong"
           >
             {caseStudy.title}
           </button>

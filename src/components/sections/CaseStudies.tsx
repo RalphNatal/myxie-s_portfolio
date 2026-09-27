@@ -49,7 +49,12 @@ export function CaseStudies() {
       </Reveal>
 
       <Reveal className="mt-10">
-        <div role="group" aria-label={copy.filterLabel} className="flex flex-wrap gap-2">
+        {/* A single swipeable row on phones; wraps from sm up. */}
+        <div
+          role="group"
+          aria-label={copy.filterLabel}
+          className="-mx-4 -my-2 flex gap-2 overflow-x-auto px-4 py-2 [scrollbar-width:none] sm:mx-0 sm:my-0 sm:flex-wrap sm:overflow-visible sm:p-0 [&::-webkit-scrollbar]:hidden"
+        >
           {filters.map((filter) => {
             const isActive = filter.id === activeFilter;
             return (
@@ -59,7 +64,7 @@ export function CaseStudies() {
                 aria-pressed={isActive}
                 onClick={() => setActiveFilter(filter.id)}
                 className={cn(
-                  "h-10 rounded-full border px-4 text-sm font-medium transition-colors duration-200",
+                  "h-10 shrink-0 rounded-full border px-4 text-sm font-medium transition-colors duration-200",
                   isActive
                     ? "border-ink bg-ink text-canvas"
                     : "border-line bg-surface text-muted hover:border-accent/60 hover:text-ink",

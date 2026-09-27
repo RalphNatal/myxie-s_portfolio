@@ -19,7 +19,14 @@ interface FormFieldProps {
 }
 
 /** Label, control and inline error message, wired together for screen readers. */
-export function FormField({ id, label, optionalLabel, error, className, children }: FormFieldProps) {
+export function FormField({
+  id,
+  label,
+  optionalLabel,
+  error,
+  className,
+  children,
+}: FormFieldProps) {
   const errorId = `${id}-error`;
 
   return (

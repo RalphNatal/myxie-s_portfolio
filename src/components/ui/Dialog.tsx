@@ -19,7 +19,14 @@ interface DialogProps {
 }
 
 /** Modal dialog: traps focus, closes on Escape or backdrop click, and restores focus on close. */
-export function Dialog({ open, onClose, labelledBy, closeLabel, className, children }: DialogProps) {
+export function Dialog({
+  open,
+  onClose,
+  labelledBy,
+  closeLabel,
+  className,
+  children,
+}: DialogProps) {
   const isClient = useIsClient();
   const panelRef = useFocusTrap<HTMLDivElement>(open, onClose);
   useLockBodyScroll(open);

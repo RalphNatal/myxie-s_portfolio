@@ -42,7 +42,10 @@ export function Experience() {
               >
                 {/* Timeline rail and marker; the most recent role gets the accent marker. */}
                 {!isLast && (
-                  <span aria-hidden="true" className="absolute bottom-0 left-[5px] top-5 w-px bg-line" />
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-0 left-[5px] top-5 w-px bg-line"
+                  />
                 )}
                 <span
                   aria-hidden="true"

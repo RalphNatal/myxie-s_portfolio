@@ -283,16 +283,14 @@ export const portfolio: Portfolio = {
       isSample: true,
     },
     {
-      quote:
-        "Reliable, detail-oriented, and always a step ahead. Our customers love her replies.",
+      quote: "Reliable, detail-oriented, and always a step ahead. Our customers love her replies.",
       name: "James T.",
       role: "Operations Manager",
       company: "Home goods store, AU",
       isSample: true,
     },
     {
-      quote:
-        "The weekly reports alone are worth it. I always know exactly where things stand.",
+      quote: "The weekly reports alone are worth it. I always know exactly where things stand.",
       name: "Priya M.",
       role: "Owner",
       company: "Apparel startup, UK",
@@ -424,6 +422,7 @@ export const portfolio: Portfolio = {
       title: "Already fluent in the tools you use",
       intro:
         "Less onboarding for you. Here's where I work every day, with an honest read on my experience in each.",
+      legendTitle: "How to read the levels",
       levelDescriptions: {
         Advanced: "Daily use; can set up workflows and train others",
         Proficient: "Regular hands-on use; fully independent",
@@ -440,6 +439,7 @@ export const portfolio: Portfolio = {
     testimonials: {
       eyebrow: "Testimonials",
       title: "What store owners say",
+      intro: "Feedback from the founders and teams I support day to day.",
       carouselLabel: "Client testimonials",
       previousLabel: "Previous testimonial",
       nextLabel: "Next testimonial",

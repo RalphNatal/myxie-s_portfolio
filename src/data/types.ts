@@ -33,13 +33,7 @@ export type IconName =
   | "ChartColumn";
 
 export type SocialPlatform =
-  | "LinkedIn"
-  | "Upwork"
-  | "OnlineJobs"
-  | "Facebook"
-  | "Instagram"
-  | "WhatsApp"
-  | "Website";
+  "LinkedIn" | "Upwork" | "OnlineJobs" | "Facebook" | "Instagram" | "WhatsApp" | "Website";
 
 export type ProficiencyLevel = "Advanced" | "Proficient" | "Familiar";
 
@@ -236,6 +230,7 @@ export interface CaseStudiesCopy extends SectionIntro {
 }
 
 export interface ToolkitCopy extends SectionIntro {
+  legendTitle: string;
   levelDescriptions: Record<ProficiencyLevel, string>;
 }
 

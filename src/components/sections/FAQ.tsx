@@ -18,7 +18,12 @@ export function FAQ() {
     <Section id="faq" labelledBy="faq-heading" tone="muted">
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
-          <SectionHeading id="faq-heading" eyebrow={copy.eyebrow} title={copy.title} intro={copy.intro} />
+          <SectionHeading
+            id="faq-heading"
+            eyebrow={copy.eyebrow}
+            title={copy.title}
+            intro={copy.intro}
+          />
         </Reveal>
         <Reveal>
           <Accordion items={items} defaultOpenId={items[0]?.id} />

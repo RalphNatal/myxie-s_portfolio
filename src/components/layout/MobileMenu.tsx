@@ -78,7 +78,10 @@ export function MobileMenu({ id, open, activeId, onClose }: MobileMenuProps) {
               </button>
             </div>
 
-            <nav aria-label={navigation.primaryNavLabel} className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+            <nav
+              aria-label={navigation.primaryNavLabel}
+              className="flex-1 overflow-y-auto px-4 py-6 sm:px-6"
+            >
               <ul className="space-y-1">
                 {navigation.links.map((link) => {
                   const isActive = link.sectionId === activeId;

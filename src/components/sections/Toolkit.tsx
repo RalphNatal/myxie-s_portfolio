@@ -21,28 +21,14 @@ const levelOrder = Object.keys(levels) as ProficiencyLevel[];
 export function Toolkit() {
   return (
     <Section id="toolkit" labelledBy="toolkit-heading" tone="muted">
-      <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-        <Reveal>
-          <SectionHeading
-            id="toolkit-heading"
-            eyebrow={copy.eyebrow}
-            title={copy.title}
-            intro={copy.intro}
-          />
-        </Reveal>
-        <Reveal className="lg:max-w-xs lg:shrink-0">
-          <dl className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-            {levelOrder.map((level) => (
-              <div key={level} className="flex flex-col items-start gap-1.5">
-                <dt>
-                  <LevelLabel level={level} />
-                </dt>
-                <dd className="text-sm text-muted">{copy.levelDescriptions[level]}</dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
-      </div>
+      <Reveal>
+        <SectionHeading
+          id="toolkit-heading"
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          intro={copy.intro}
+        />
+      </Reveal>
 
       <ul className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
         {toolkit.map((group, index) => (
@@ -60,6 +46,24 @@ export function Toolkit() {
             </Card>
           </Reveal>
         ))}
+
+        <Reveal as="li" delay={staggerDelay(toolkit.length)} className="flex">
+          <div className="w-full rounded-card border border-dashed border-muted/30 p-6 sm:p-8">
+            <h3 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-muted">
+              {copy.legendTitle}
+            </h3>
+            <dl className="mt-6 space-y-5">
+              {levelOrder.map((level) => (
+                <div key={level}>
+                  <dt>
+                    <LevelLabel level={level} />
+                  </dt>
+                  <dd className="mt-2 text-sm text-muted">{copy.levelDescriptions[level]}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </Reveal>
       </ul>
     </Section>
   );

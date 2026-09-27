@@ -33,7 +33,7 @@ export function Footer() {
             <h2 id="footer-links-heading" className={columnHeadingClasses}>
               {footer.quickLinksLabel}
             </h2>
-            <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-1 md:grid-cols-1">
+            <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-1">
               {navigation.links.map((link) => (
                 <li key={link.sectionId}>
                   <a

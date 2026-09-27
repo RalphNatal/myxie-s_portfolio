@@ -32,8 +32,7 @@ export function Testimonials() {
 
   const paginate = (step: number) =>
     setSlide(([current]) => [(current + step + count) % count, step]);
-  const goTo = (target: number) =>
-    setSlide(([current]) => [target, target > current ? 1 : -1]);
+  const goTo = (target: number) => setSlide(([current]) => [target, target > current ? 1 : -1]);
 
   function handleDragEnd(_: PointerEvent | MouseEvent | TouchEvent, info: PanInfo) {
     const swipe = info.offset.x + info.velocity.x * 0.2;
@@ -58,7 +57,11 @@ export function Testimonials() {
             {/* Every slide is rendered invisibly in the same grid cell so the height never jumps. */}
             <div className="grid" aria-live="polite">
               {testimonials.map((testimonial) => (
-                <div key={testimonial.name} aria-hidden="true" className="invisible [grid-area:1/1]">
+                <div
+                  key={testimonial.name}
+                  aria-hidden="true"
+                  className="invisible [grid-area:1/1]"
+                >
                   <TestimonialCard testimonial={testimonial} />
                 </div>
               ))}
@@ -149,7 +152,10 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           </p>
           <p className="text-sm text-muted">
             {testimonial.role}
-            <span aria-hidden="true" className="mx-2 inline-block size-1 rounded-full bg-muted/60 align-middle" />
+            <span
+              aria-hidden="true"
+              className="mx-2 inline-block size-1 rounded-full bg-muted/60 align-middle"
+            />
             {testimonial.company}
           </p>
         </div>
