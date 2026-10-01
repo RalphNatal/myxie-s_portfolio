@@ -1,5 +1,5 @@
-import { portfolio } from "@/data/portfolio";
 import type { SocialLink } from "@/data/types";
+import { socials } from "@/lib/content";
 import { socialIcons } from "@/lib/icons";
 import { cn } from "@/lib/utils";
 import { NewTabHint } from "./NewTabHint";
@@ -9,7 +9,10 @@ interface SocialLinksProps {
   className?: string;
 }
 
-export function SocialLinks({ links = portfolio.profile.socials, className }: SocialLinksProps) {
+/** Renders only the platforms listed in the profile; nothing at all when there are none. */
+export function SocialLinks({ links = socials, className }: SocialLinksProps) {
+  if (links.length === 0) return null;
+
   return (
     <ul className={cn("flex flex-wrap gap-2", className)}>
       {links.map((link) => {

@@ -17,7 +17,7 @@ export function getInitials(profile: Pick<Profile, "firstName" | "lastName">): s
     .join("");
 }
 
-/** Initials from a display name like "Sarah K." → "SK". */
+/** Initials from a display name like "Ana R." → "AR". */
 export function getNameInitials(name: string): string {
   return name
     .split(/\s+/)

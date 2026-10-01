@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { fileURLToPath, URL } from "node:url";
 import react from "@vitejs/plugin-react";
 import { defineConfig, type Plugin } from "vite";
@@ -9,7 +10,10 @@ function portfolioSeo(): Plugin {
   return {
     name: "portfolio-seo",
     transformIndexHtml(html) {
-      return html.replace("<!--app-head-->", renderHeadTags(portfolio));
+      const { portrait } = portfolio.profile;
+      const hasPortrait =
+        Boolean(portrait) && existsSync(new URL(`./public${portrait}`, import.meta.url));
+      return html.replace("<!--app-head-->", renderHeadTags(portfolio, { hasPortrait }));
     },
   };
 }

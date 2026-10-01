@@ -4,10 +4,11 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { portfolio } from "@/data/portfolio";
 import type { ProficiencyLevel } from "@/data/types";
+import { visibleToolkit } from "@/lib/content";
 import { staggerDelay } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-const { toolkit, sections } = portfolio;
+const { sections } = portfolio;
 const copy = sections.toolkit;
 
 const levels: Record<ProficiencyLevel, { filledDots: number; className: string }> = {
@@ -19,6 +20,8 @@ const levels: Record<ProficiencyLevel, { filledDots: number; className: string }
 const levelOrder = Object.keys(levels) as ProficiencyLevel[];
 
 export function Toolkit() {
+  if (visibleToolkit.length === 0) return null;
+
   return (
     <Section id="toolkit" labelledBy="toolkit-heading" tone="muted">
       <Reveal>
@@ -31,7 +34,7 @@ export function Toolkit() {
       </Reveal>
 
       <ul className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
-        {toolkit.map((group, index) => (
+        {visibleToolkit.map((group, index) => (
           <Reveal as="li" key={group.category} delay={staggerDelay(index)} className="flex">
             <Card className="w-full p-6 sm:p-8">
               <h3 className="text-xl font-medium text-ink">{group.category}</h3>
@@ -47,7 +50,7 @@ export function Toolkit() {
           </Reveal>
         ))}
 
-        <Reveal as="li" delay={staggerDelay(toolkit.length)} className="flex">
+        <Reveal as="li" delay={staggerDelay(visibleToolkit.length)} className="flex">
           <div className="w-full rounded-card border border-dashed border-muted/30 p-6 sm:p-8">
             <h3 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-muted">
               {copy.legendTitle}

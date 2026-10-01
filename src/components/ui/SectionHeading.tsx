@@ -6,15 +6,32 @@ interface SectionHeadingProps {
   eyebrow: string;
   title: string;
   intro?: string;
+  /** "center" is for short headings above a single, centered item. */
+  align?: "start" | "center";
   className?: string;
 }
 
-export function SectionHeading({ id, eyebrow, title, intro, className }: SectionHeadingProps) {
+export function SectionHeading({
+  id,
+  eyebrow,
+  title,
+  intro,
+  align = "start",
+  className,
+}: SectionHeadingProps) {
+  const isCentered = align === "center";
+
   return (
-    <div className={cn("max-w-2xl", className)}>
-      <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-accent-strong">
+    <div className={cn("max-w-2xl", isCentered && "mx-auto text-center", className)}>
+      <p
+        className={cn(
+          "flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow text-accent-strong",
+          isCentered && "justify-center",
+        )}
+      >
         <span aria-hidden="true" className="h-px w-8 bg-accent" />
         {eyebrow}
+        {isCentered && <span aria-hidden="true" className="h-px w-8 bg-accent" />}
       </p>
       <h2 id={id} className="mt-4 text-2xl font-medium text-ink lg:text-3xl">
         {title}

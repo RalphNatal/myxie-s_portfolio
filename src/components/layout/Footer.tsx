@@ -2,11 +2,13 @@ import { ArrowUp } from "lucide-react";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { portfolio } from "@/data/portfolio";
 import { useCurrentYear } from "@/hooks/useClock";
+import { socials, visibleNavLinks } from "@/lib/content";
 import { fillTemplate, getFullName } from "@/lib/text";
+import { cn } from "@/lib/utils";
 import { Container } from "./Container";
 import { Logo } from "./Logo";
 
-const { footer, navigation, profile } = portfolio;
+const { footer, profile } = portfolio;
 
 const columnHeadingClasses =
   "font-sans text-xs font-semibold uppercase tracking-eyebrow text-muted";
@@ -17,13 +19,23 @@ export function Footer() {
   return (
     <footer className="border-t border-line bg-surface/60">
       <Container className="py-16">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div
+          className={cn(
+            "grid gap-12",
+            socials.length > 0 ? "md:grid-cols-[1.4fr_1fr_1fr]" : "md:grid-cols-[1.4fr_1fr]",
+          )}
+        >
           <div>
             <Logo />
+            {profile.nickname && (
+              <p className="mt-3 text-sm text-muted">
+                {fillTemplate(footer.nicknameLine, { nickname: profile.nickname })}
+              </p>
+            )}
             <p className="mt-4 max-w-xs text-muted">{footer.tagline}</p>
             <a
               href={`mailto:${profile.email}`}
-              className="mt-6 inline-block font-medium text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:text-accent-strong hover:decoration-accent"
+              className="mt-6 inline-block break-all font-medium text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:text-accent-strong hover:decoration-accent"
             >
               {profile.email}
             </a>
@@ -34,7 +46,7 @@ export function Footer() {
               {footer.quickLinksLabel}
             </h2>
             <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-1">
-              {navigation.links.map((link) => (
+              {visibleNavLinks.map((link) => (
                 <li key={link.sectionId}>
                   <a
                     href={`#${link.sectionId}`}
@@ -47,10 +59,12 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div>
-            <h2 className={columnHeadingClasses}>{footer.socialsLabel}</h2>
-            <SocialLinks className="mt-4" />
-          </div>
+          {socials.length > 0 && (
+            <div>
+              <h2 className={columnHeadingClasses}>{footer.socialsLabel}</h2>
+              <SocialLinks className="mt-4" />
+            </div>
+          )}
         </div>
 
         <div className="mt-12 flex flex-col-reverse gap-4 border-t border-line pt-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">

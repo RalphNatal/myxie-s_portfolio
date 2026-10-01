@@ -2,17 +2,17 @@ import type { Portfolio } from "./types.ts";
 
 export const portfolio: Portfolio = {
   meta: {
-    siteTitle: "Myxie | E-Commerce & Operations Virtual Assistant",
+    siteTitle: "Michaella Pascua | E-Commerce & Operations Virtual Assistant",
     description:
-      "Philippines-based virtual assistant helping e-commerce brands run smoother: order processing, customer support, inventory, admin and data entry.",
+      "Manila-based virtual assistant with 8 years of online selling and customer support experience. Order processing, customer support, inventory, admin and data entry for online stores.",
     siteUrl: "https://ralphnatal.github.io/myxie-s_portfolio/",
     ogImage: "/og-image.png",
-    areaServed: ["United States", "Australia", "United Kingdom"],
   },
 
   profile: {
-    firstName: "Myxie",
-    lastName: "Dela Cruz", // TODO: real last name
+    firstName: "Michaella",
+    lastName: "Pascua",
+    nickname: "Myxie",
     role: "E-Commerce & Operations Virtual Assistant",
     headline: "I keep your store running so you can focus on growing it.",
     subheadline:
@@ -21,22 +21,22 @@ export const portfolio: Portfolio = {
     timezone: "Asia/Manila",
     workingHours: "Flexible, with 4–6 hours of overlap with US/AU business hours",
     availability: { isAvailable: true, label: "Available for 2 new clients" },
-    portrait: "", // TODO: e.g. "/images/myxie.jpg" (empty = initials placeholder)
-    resumeUrl: "/resume.pdf", // TODO: replace file in /public
-    email: "hello@myxie.com", // TODO
-    bookingUrl: "https://calendly.com/your-link", // TODO
-    formspreeId: "YOUR_FORM_ID", // TODO
+    portrait: "/images/michaella.jpg",
+    portraitAlt: "Portrait of Michaella Pascua",
+    resumeUrl: "/resume.pdf",
+    email: "pascua.michaella@gmail.com",
+    bookingUrl: undefined, // No booking link yet: CTAs fall back to email
+    formspreeId: "YOUR_FORM_ID", // TODO: create a Formspree form for pascua.michaella@gmail.com
     socials: [
-      { platform: "LinkedIn", url: "https://linkedin.com/in/your-profile" }, // TODO
-      { platform: "Upwork", url: "https://upwork.com/freelancers/your-profile" }, // TODO
-      { platform: "OnlineJobs", url: "https://onlinejobs.ph/your-profile" }, // TODO
+      { platform: "OnlineJobs.ph", url: "https://v2.onlinejobs.ph/jobseekers/info/5237791" },
+      { platform: "Facebook", url: "https://www.facebook.com/Skittellas/" }, // CONFIRM: OK to show publicly?
     ],
   },
 
   stats: [
-    { value: "3+", label: "Years supporting online stores" },
-    { value: "12,000+", label: "Orders processed" },
-    { value: "< 2 hrs", label: "Average response time" },
+    { value: "8 yrs", label: "Selling & supporting customers online" }, // Based on 2017–2025 as an independent seller
+    { value: "1,000+", label: "Orders handled" },
+    { value: "< 10 min", label: "Typical reply time" },
   ],
 
   services: [
@@ -44,40 +44,40 @@ export const portfolio: Portfolio = {
       id: "order-processing",
       icon: "PackageCheck",
       title: "Order Processing",
-      summary: "Every order confirmed, fulfilled and tracked without delays.",
+      summary: "Every order confirmed, tracked and followed through.",
       deliverables: [
-        "Daily order verification and fulfillment",
-        "Returns, refunds and exchanges handling",
-        "Shipping label creation and tracking updates",
-        "Fraud-flag review and escalation",
+        "Order checking and confirmation",
+        "Returns, refunds and exchange requests",
+        "Order and shipment status updates to customers",
+        "Order logs kept up to date in spreadsheets",
       ],
-      tools: ["Shopify", "Amazon Seller Central", "ShipStation"],
+      tools: ["Google Sheets", "Excel", "Gmail"],
     },
     {
       id: "ecommerce",
       icon: "ShoppingCart",
       title: "E-Commerce Support",
-      summary: "Product listings that are accurate, optimized and on-brand.",
+      summary: "Day-to-day store tasks handled by someone who has run her own shop.",
       deliverables: [
-        "Product uploads with descriptions, SKUs and variants",
-        "Collection and category organization",
-        "Price and promo updates",
-        "Basic keyword optimization for listings",
+        "Product details, prices and promo updates",
+        "Simple product graphics and promo images",
+        "Listing and catalog organization",
+        "Handling buyer questions before and after purchase",
       ],
-      tools: ["Shopify", "WooCommerce", "Etsy", "Canva"],
+      tools: ["Canva", "Google Sheets"],
     },
     {
       id: "customer-support",
       icon: "Headset",
       title: "Customer Support",
-      summary: "Friendly, fast replies that turn questions into repeat buyers.",
+      summary: "Fast, patient replies that turn questions into repeat buyers.",
       deliverables: [
         "Email and live chat support",
-        "Order status, returns and FAQ handling",
-        "Ticket tagging and escalation",
-        "Saved replies and help-doc upkeep",
+        "Billing, payment and account concerns",
+        "Calm handling of upset customers",
+        "Escalating issues with clear notes",
       ],
-      tools: ["Gorgias", "Zendesk", "Intercom", "Gmail"],
+      tools: ["Zendesk", "LiveChat", "Gmail", "Zoom"],
     },
     {
       id: "inventory",
@@ -85,23 +85,23 @@ export const portfolio: Portfolio = {
       title: "Inventory Management",
       summary: "Stock levels you can trust, with no surprise sellouts.",
       deliverables: [
-        "Stock level monitoring and low-stock alerts",
-        "Inventory reconciliation across channels",
-        "Supplier and restock tracking sheets",
-        "Weekly inventory reports",
+        "Stock tracking sheets",
+        "Low-stock alerts and restock lists",
+        "Stock count reconciliation",
+        "Weekly inventory summaries",
       ],
-      tools: ["Shopify", "Google Sheets", "Airtable"],
+      tools: ["Google Sheets", "Excel"],
     },
     {
       id: "administrative",
       icon: "CalendarCheck",
       title: "Administrative Support",
-      summary: "An organized inbox, calendar and workspace every single week.",
+      summary: "An organized inbox, calendar and workspace every week.",
       deliverables: [
-        "Inbox management and triage",
+        "Inbox management and sorting",
         "Calendar and meeting scheduling",
         "Document prep and file organization",
-        "SOP writing and upkeep",
+        "Simple process notes and checklists",
       ],
       tools: ["Google Workspace", "Microsoft Office", "Notion"],
     },
@@ -112,11 +112,11 @@ export const portfolio: Portfolio = {
       summary: "Clean, accurate records, entered right the first time.",
       deliverables: [
         "Spreadsheet data entry and cleanup",
-        "CRM and database updates",
-        "Data migration between tools",
-        "Record deduplication and formatting",
+        "Customer and order record updates",
+        "Moving data between spreadsheets and tools",
+        "Removing duplicates and fixing formatting",
       ],
-      tools: ["Excel", "Google Sheets", "Airtable"],
+      tools: ["Excel", "Google Sheets"],
     },
   ],
 
@@ -124,101 +124,51 @@ export const portfolio: Portfolio = {
     {
       step: 1,
       title: "Discovery Call",
-      description: "We map your current workflow, pain points and priorities.",
+      description: "We talk through your store, your tasks and your priorities.",
     },
     {
       step: 2,
-      title: "Onboarding & SOPs",
-      description: "I document every task so nothing depends on memory.",
+      title: "Onboarding",
+      description: "I learn your tools and write down each task so nothing is missed.",
     },
     {
       step: 3,
       title: "Daily Execution",
-      description: "Tasks handled on schedule, with updates in your preferred channel.",
+      description: "Tasks handled on schedule, with updates by email or WhatsApp.",
     },
     {
       step: 4,
       title: "Weekly Reporting",
-      description: "A clear summary of what was done, key numbers and next steps.",
+      description: "A clear summary of what was done and what's next.",
     },
   ],
 
   caseStudies: [
     {
-      id: "skincare-orders",
-      serviceIds: ["order-processing", "customer-support"],
-      title: "Cutting order backlog for a skincare brand",
-      clientType: "Shopify skincare brand (US)", // TODO
-      problem: "A 3-day order backlog during a product launch led to rising refund requests.",
+      id: "card-decline-support",
+      serviceIds: ["customer-support"],
+      title: "Resolving declined-card issues for credit card customers",
+      clientType: "US department store credit card account (via BPO)", // CONFIRM: she allowed "Macy's", but BPO accounts usually have NDAs
+      problem:
+        "Customers were calling because their store credit card was being declined at checkout.",
       solution:
-        "Set up a daily fulfillment checklist, triaged the support inbox in Gorgias with tags and macros, and flagged address issues before shipping.",
-      result: { metric: "3 days → same day", label: "Order turnaround" },
-      image: "", // TODO
-      isSample: true,
-    },
-    {
-      id: "home-goods-inventory",
-      serviceIds: ["inventory", "data-entry"],
-      title: "Syncing inventory across two sales channels",
-      clientType: "Home goods seller on Shopify + Amazon", // TODO
-      problem: "Stock counts didn't match between channels, causing oversells.",
-      solution:
-        "Built a Google Sheets reconciliation tracker, audited 400+ SKUs, and ran weekly low-stock reports.",
-      result: { metric: "0 oversells", label: "In the following quarter" },
+        "Checked each account for restrictions, expiry and available credit limit, explained the cause clearly, and took the right next step on the call.",
+      result: {
+        metric: "Card issues resolved",
+        label: "Restriction lifted, card replaced, or credit increase requested",
+      },
       image: "",
-      isSample: true,
-    },
-    {
-      id: "apparel-listings",
-      serviceIds: ["ecommerce"],
-      title: "Launching a 250-product apparel catalog",
-      clientType: "Apparel startup (AU)", // TODO
-      problem: "The catalog launch was stalled with only 40 products listed.",
-      solution:
-        "Uploaded and organized listings with variants, sizing charts and SEO-friendly titles using a standard template.",
-      result: { metric: "250 products", label: "Live in 2 weeks" },
-      image: "",
-      isSample: true,
-    },
-    {
-      id: "founder-admin",
-      serviceIds: ["administrative"],
-      title: "Giving a founder back 10 hours a week",
-      clientType: "E-commerce founder (UK)", // TODO
-      problem: "The founder spent most mornings in email and scheduling.",
-      solution:
-        "Introduced inbox labels and filters, handled scheduling, and moved recurring tasks into Notion SOPs.",
-      result: { metric: "10 hrs/week", label: "Time saved" },
-      image: "",
-      isSample: true,
     },
   ],
 
   toolkit: [
     {
-      category: "E-Commerce Platforms",
-      tools: [
-        { name: "Shopify", level: "Advanced" },
-        { name: "Amazon Seller Central", level: "Proficient" },
-        { name: "WooCommerce", level: "Proficient" },
-        { name: "Etsy", level: "Familiar" },
-      ],
-    },
-    {
-      category: "Customer Support",
-      tools: [
-        { name: "Gorgias", level: "Advanced" },
-        { name: "Zendesk", level: "Proficient" },
-        { name: "Intercom", level: "Familiar" },
-        { name: "LiveChat", level: "Familiar" },
-      ],
-    },
-    {
       category: "Productivity & Admin",
       tools: [
         { name: "Google Workspace", level: "Advanced" },
         { name: "Microsoft Office", level: "Advanced" },
-        { name: "Notion", level: "Proficient" },
+        { name: "Gmail", level: "Advanced" },
+        { name: "Notion", level: "Familiar" },
       ],
     },
     {
@@ -226,49 +176,47 @@ export const portfolio: Portfolio = {
       tools: [
         { name: "Google Sheets", level: "Advanced" },
         { name: "Excel", level: "Advanced" },
-        { name: "Airtable", level: "Proficient" },
       ],
+    },
+    {
+      category: "Customer Support",
+      tools: [
+        { name: "Zendesk", level: "Familiar" },
+        { name: "LiveChat", level: "Familiar" },
+      ],
+    },
+    {
+      category: "Design",
+      tools: [{ name: "Canva", level: "Proficient" }],
     },
     {
       category: "Communication",
       tools: [
-        { name: "Slack", level: "Advanced" },
         { name: "Zoom", level: "Advanced" },
-        { name: "Loom", level: "Proficient" },
+        { name: "Loom", level: "Familiar" },
       ],
     },
   ],
 
   experience: [
     {
-      role: "E-Commerce Virtual Assistant",
-      company: "Freelance, multiple Shopify brands", // TODO
-      start: "2024",
-      end: "Present",
+      role: "Independent E-Commerce Seller",
+      company: "Freelance, own online store",
+      start: "2017",
+      end: "2025",
       achievements: [
-        "Manage daily orders and support for 3 active stores",
-        "Built SOP libraries that cut new-task onboarding time in half",
-        "Maintain a < 2-hour first-response time across channels",
+        "Handled 3–5 customer orders and inquiries every day",
+        "Built a loyal base of repeat customers",
       ],
     },
     {
-      role: "Customer Support Representative",
-      company: "BPO, e-commerce account", // TODO
-      start: "2022",
-      end: "2024",
+      role: "Customer Advisor",
+      company: "Concentrix (BPO)",
+      period: "1.5 months", // TODO: add the year
       achievements: [
-        "Handled 60+ email and chat tickets per shift",
-        "Consistently scored 95%+ on quality audits",
-      ],
-    },
-    {
-      role: "Administrative & Data Entry Assistant",
-      company: "Local distribution company", // TODO
-      start: "2021",
-      end: "2022",
-      achievements: [
-        "Encoded and reconciled 1,000+ inventory records monthly",
-        "Organized digital filing for a 20-person team",
+        "Handled a high volume of customer calls daily",
+        "Calmly resolved concerns from upset customers",
+        "Assisted customers with payments and billing",
       ],
     },
   ],
@@ -276,25 +224,10 @@ export const portfolio: Portfolio = {
   testimonials: [
     {
       quote:
-        "Myxie took our order chaos and turned it into a system. I finally stopped checking Shopify at midnight.",
-      name: "Sarah K.", // TODO: replace with real client
-      role: "Founder",
-      company: "Skincare brand, US",
-      isSample: true,
-    },
-    {
-      quote: "Reliable, detail-oriented, and always a step ahead. Our customers love her replies.",
-      name: "James T.",
-      role: "Operations Manager",
-      company: "Home goods store, AU",
-      isSample: true,
-    },
-    {
-      quote: "The weekly reports alone are worth it. I always know exactly where things stand.",
-      name: "Priya M.",
-      role: "Owner",
-      company: "Apparel startup, UK",
-      isSample: true,
+        "Michaella is very professional, she handled me very well because I'm a PWD who needs assistance.",
+      name: "Pearl",
+      role: "Loyal Member",
+      company: "US department store (via BPO)", // CONFIRM: she wrote "Macy's Loyal Member"
     },
   ],
 
@@ -302,32 +235,36 @@ export const portfolio: Portfolio = {
     {
       name: "Starter",
       hours: "10 hrs / week",
-      price: "$8/hr", // TODO: set your rates
+      price: "$2/hr", // CONFIRM with Michaella: rates rise with hours and are very low for this market
       description: "For stores that need a reliable extra pair of hands.",
-      features: ["1–2 core services", "Daily updates via email or Slack", "Weekly summary report"],
+      features: [
+        "1–2 core services",
+        "Daily updates via email or WhatsApp",
+        "Weekly summary report",
+      ],
       highlighted: false,
     },
     {
       name: "Growth",
       hours: "20 hrs / week",
-      price: "$7.50/hr",
-      description: "For growing brands ready to hand off daily operations.",
+      price: "$4/hr", // CONFIRM
+      description: "For growing stores ready to hand off daily tasks.",
       features: [
         "Up to 4 core services",
-        "SOP documentation included",
-        "Weekly report + monthly review call",
+        "Task checklists written for you",
+        "Weekly report + monthly Zoom check-in",
       ],
       highlighted: true,
     },
     {
       name: "Dedicated",
       hours: "40 hrs / week",
-      price: "$7/hr",
-      description: "A full-time operations partner embedded in your team.",
+      price: "$6/hr", // CONFIRM
+      description: "A full-time assistant working as part of your team.",
       features: [
         "All 6 services",
         "Custom workflows and reporting",
-        "Priority response during overlap hours",
+        "Priority replies during overlap hours",
       ],
       highlighted: false,
     },
@@ -341,11 +278,12 @@ export const portfolio: Portfolio = {
     },
     {
       question: "How do we communicate?",
-      answer: "Whatever works for your team: Slack, email, WhatsApp or scheduled Zoom calls.",
+      answer:
+        "By email, WhatsApp or scheduled Zoom calls, whichever suits you best. I usually reply within 10 minutes during working hours.",
     },
     {
       question: "Can I start with a trial?",
-      answer: "Yes. I offer a 1-week paid trial so you can see how I work before committing.",
+      answer: "Yes. I offer a paid 1-week trial so you can see how I work before committing.",
     },
     {
       question: "How do you handle access to my accounts?",
@@ -354,7 +292,7 @@ export const portfolio: Portfolio = {
     },
     {
       question: "How do you get paid?",
-      answer: "Weekly or bi-weekly via Wise, PayPal or Upwork.",
+      answer: "Weekly or bi-weekly via PayPal.",
     },
   ],
 
@@ -375,6 +313,8 @@ export const portfolio: Portfolio = {
       { label: "Contact", sectionId: "contact" },
     ],
     bookCallLabel: "Book a Call",
+    emailCtaLabel: "Email Me",
+    emailCtaSubject: "Inquiry from your website",
     primaryNavLabel: "Main",
     menuLabel: "Menu",
     openMenuLabel: "Open menu",
@@ -404,9 +344,9 @@ export const portfolio: Portfolio = {
       intro: "You always know what's being handled, what's done and what's coming next.",
     },
     caseStudies: {
-      eyebrow: "Case Studies",
-      title: "Real problems, measurable results",
-      intro: "A few examples of the operational fixes I bring to online stores.",
+      eyebrow: "Selected Work",
+      title: "Real problems, handled with care",
+      intro: "A closer look at how I solve problems for customers.",
       filterLabel: "Filter case studies by service",
       filterAllLabel: "All work",
       problemLabel: "The problem",
@@ -433,13 +373,13 @@ export const portfolio: Portfolio = {
       eyebrow: "Experience",
       title: "A track record built on consistency",
       intro:
-        "From a busy BPO support floor to running daily operations for Shopify brands, every role has sharpened the same habits: accuracy, follow-through and clear communication.",
+        "From running my own online store to taking calls on a busy BPO support floor, every role has sharpened the same habits: accuracy, follow-through and clear communication.",
       resumeLabel: "Download Résumé",
     },
     testimonials: {
       eyebrow: "Testimonials",
-      title: "What store owners say",
-      intro: "Feedback from the founders and teams I support day to day.",
+      title: "What people say",
+      intro: "Feedback from customers I've supported.",
       carouselLabel: "Client testimonials",
       previousLabel: "Previous testimonial",
       nextLabel: "Next testimonial",
@@ -450,7 +390,7 @@ export const portfolio: Portfolio = {
       eyebrow: "Packages",
       title: "Simple, flexible support plans",
       intro:
-        "Billed weekly at an hourly rate. Start with the hours you need now and scale up as your store grows.",
+        "Paid weekly or bi-weekly at an hourly rate. Start with the hours you need now and scale up as your store grows.",
       popularLabel: "Most Popular",
       ctaLabel: "Get started",
       includedLabel: "What's included",
@@ -466,7 +406,7 @@ export const portfolio: Portfolio = {
       eyebrow: "Contact",
       title: "Let's make your store easier to run",
       intro:
-        "Tell me a bit about your business and where you need help. I'll reply within one business day with next steps.",
+        "Tell me a bit about your business and where you need help, and I'll get back to you with next steps.",
       emailLabel: "Email",
       locationLabel: "Based in",
       timezoneLabel: "Local time",
@@ -486,7 +426,7 @@ export const portfolio: Portfolio = {
     fields: {
       name: { label: "Your name", placeholder: "Jane Smith" },
       email: { label: "Email address", placeholder: "jane@yourstore.com" },
-      businessType: { label: "Business type", placeholder: "e.g. Shopify skincare brand" },
+      businessType: { label: "Business type", placeholder: "e.g. Online clothing shop" },
       service: {
         label: "Service needed",
         placeholder: "Choose a service",
@@ -512,8 +452,7 @@ export const portfolio: Portfolio = {
     submitLabel: "Send inquiry",
     submittingLabel: "Sending…",
     successTitle: "Thank you, your message is on its way.",
-    successMessage:
-      "I'll reply within one business day. In the meantime, feel free to book a discovery call.",
+    successMessage: "I'll get back to you at the email address you gave me.",
     mailtoTitle: "Your email app should now be open.",
     mailtoMessage:
       "Your message is drafted and ready to send. If nothing opened, you can email me at {email}.",
@@ -530,6 +469,7 @@ export const portfolio: Portfolio = {
     quickLinksLabel: "Quick links",
     socialsLabel: "Elsewhere",
     backToTopLabel: "Back to top",
+    nicknameLine: "Friends call me {nickname}.",
     copyright: "© {year} {name}. All rights reserved.",
   },
 
@@ -537,6 +477,5 @@ export const portfolio: Portfolio = {
     skipToContent: "Skip to main content",
     themeToggle: "Dark mode",
     opensInNewTab: "(opens in a new tab)",
-    sampleBadge: "Sample",
   },
 };

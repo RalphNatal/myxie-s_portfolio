@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { portfolio } from "@/data/portfolio";
+import { socials } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { LocalTime } from "./LocalTime";
 
@@ -32,21 +33,26 @@ export function ContactDetails({ className }: { className?: string }) {
         </DetailItem>
       </ul>
 
-      <div className="mt-10 rounded-card border border-line bg-surface p-6 shadow-soft">
-        <h3 className="text-lg font-medium text-ink">{copy.bookingTitle}</h3>
-        <p className="mt-2 text-muted">{copy.bookingDescription}</p>
-        <Button href={profile.bookingUrl} external variant="secondary" className="mt-6">
-          <CalendarDays aria-hidden="true" className="size-4" />
-          {copy.bookingLabel}
-        </Button>
-      </div>
+      {/* Without a booking page this card has nothing to offer; the email above covers it. */}
+      {profile.bookingUrl && (
+        <div className="mt-10 rounded-card border border-line bg-surface p-6 shadow-soft">
+          <h3 className="text-lg font-medium text-ink">{copy.bookingTitle}</h3>
+          <p className="mt-2 text-muted">{copy.bookingDescription}</p>
+          <Button href={profile.bookingUrl} external variant="secondary" className="mt-6">
+            <CalendarDays aria-hidden="true" className="size-4" />
+            {copy.bookingLabel}
+          </Button>
+        </div>
+      )}
 
-      <div className="mt-10">
-        <h3 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-muted">
-          {copy.socialsLabel}
-        </h3>
-        <SocialLinks className="mt-4" />
-      </div>
+      {socials.length > 0 && (
+        <div className="mt-10">
+          <h3 className="font-sans text-xs font-semibold uppercase tracking-eyebrow text-muted">
+            {copy.socialsLabel}
+          </h3>
+          <SocialLinks className="mt-4" />
+        </div>
+      )}
     </div>
   );
 }

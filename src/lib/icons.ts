@@ -1,5 +1,6 @@
 import {
   Boxes,
+  Briefcase,
   BriefcaseBusiness,
   CalendarCheck,
   Camera,
@@ -14,7 +15,6 @@ import {
   MessagesSquare,
   PackageCheck,
   Receipt,
-  SearchCheck,
   ShoppingCart,
   Store,
   Table,
@@ -47,7 +47,7 @@ export const serviceIcons: Record<IconName, LucideIcon> = {
 export const socialIcons: Record<SocialPlatform, LucideIcon> = {
   LinkedIn: UserRound,
   Upwork: BriefcaseBusiness,
-  OnlineJobs: SearchCheck,
+  "OnlineJobs.ph": Briefcase,
   Facebook: UsersRound,
   Instagram: Camera,
   WhatsApp: MessageCircle,

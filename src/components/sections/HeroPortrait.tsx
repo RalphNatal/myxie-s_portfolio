@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import { useState } from "react";
 import { portfolio } from "@/data/portfolio";
 import { useCurrentMinute } from "@/hooks/useClock";
 import { getFullName, getInitials } from "@/lib/text";
@@ -7,11 +8,18 @@ import { assetUrl, cn } from "@/lib/utils";
 
 const { profile } = portfolio;
 
-/** Portrait in an arch frame, or initials art when no photo is set. */
+/** Portrait in an arch frame, or initials art when no photo is set or the file can't load. */
 export function HeroPortrait({ className }: { className?: string }) {
   const now = useCurrentMinute();
+  const [photoFailed, setPhotoFailed] = useState(false);
   const alt = profile.portraitAlt ?? `${getFullName(profile)}, ${profile.role}`;
   const utcOffset = now ? formatUtcOffset(profile.timezone, now) : "";
+  const showPhoto = Boolean(profile.portrait) && !photoFailed;
+
+  // The prerendered <img> can fail before React attaches onError, so also check it on mount.
+  function detectEarlyFailure(img: HTMLImageElement | null) {
+    if (img?.complete && img.naturalWidth === 0) setPhotoFailed(true);
+  }
 
   return (
     <div className={cn("relative mx-auto w-full max-w-[20rem] sm:max-w-sm lg:max-w-md", className)}>
@@ -21,17 +29,18 @@ export function HeroPortrait({ className }: { className?: string }) {
       />
 
       <div className="relative aspect-[4/5] overflow-hidden rounded-b-[2rem] rounded-t-full border border-line bg-subtle shadow-lift">
-        {profile.portrait ? (
+        <InitialsArt label={showPhoto ? undefined : alt} />
+        {showPhoto && (
           <img
+            ref={detectEarlyFailure}
             src={assetUrl(profile.portrait)}
             alt={alt}
             width={640}
             height={800}
             decoding="async"
-            className="size-full object-cover"
+            onError={() => setPhotoFailed(true)}
+            className="absolute inset-0 size-full object-cover text-transparent"
           />
-        ) : (
-          <InitialsArt label={alt} />
         )}
       </div>
 
@@ -48,11 +57,11 @@ export function HeroPortrait({ className }: { className?: string }) {
   );
 }
 
-function InitialsArt({ label }: { label: string }) {
+/** Decorative initials; announced as the portrait only when no photo is shown (`label` set). */
+function InitialsArt({ label }: { label?: string }) {
   return (
     <div
-      role="img"
-      aria-label={label}
+      {...(label ? { role: "img", "aria-label": label } : { "aria-hidden": true })}
       className="relative size-full bg-gradient-to-b from-accent/25 via-accent/10 to-sage/20"
     >
       <div aria-hidden="true">

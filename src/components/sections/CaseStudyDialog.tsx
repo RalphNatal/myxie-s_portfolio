@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { useId, type MouseEvent } from "react";
-import { Badge, SampleBadge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
 import { Tag } from "@/components/ui/Tag";
@@ -47,10 +47,7 @@ export function CaseStudyDialog({ caseStudy, variant, open, onClose }: CaseStudy
           />
 
           <div className="p-6 sm:p-10">
-            <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
-              <span>{caseStudy.clientType}</span>
-              {caseStudy.isSample && <SampleBadge />}
-            </div>
+            <p className="text-sm text-muted">{caseStudy.clientType}</p>
             <h2 id={titleId} className="mt-3 text-2xl font-medium text-ink">
               {caseStudy.title}
             </h2>

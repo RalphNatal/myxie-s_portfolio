@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { portfolio } from "@/data/portfolio";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrolled } from "@/hooks/useScrolled";
+import { getNavbarCta, visibleNavLinks } from "@/lib/content";
 import { DURATION, EASE_OUT } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
@@ -12,8 +13,9 @@ import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { ThemeToggle } from "./ThemeToggle";
 
-const { navigation, profile } = portfolio;
-const navSectionIds = navigation.links.map((link) => link.sectionId);
+const { navigation } = portfolio;
+const navSectionIds = visibleNavLinks.map((link) => link.sectionId);
+const cta = getNavbarCta();
 const MOBILE_MENU_ID = "mobile-menu";
 
 export function Navbar() {
@@ -35,7 +37,7 @@ export function Navbar() {
 
         <nav aria-label={navigation.primaryNavLabel} className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {navigation.links.map((link) => {
+            {visibleNavLinks.map((link) => {
               const isActive = link.sectionId === activeId;
               return (
                 <li key={link.sectionId}>
@@ -65,8 +67,13 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button href={profile.bookingUrl} external size="sm" className="hidden sm:inline-flex">
-            {navigation.bookCallLabel}
+          <Button
+            href={cta.href}
+            external={cta.external}
+            size="sm"
+            className="hidden sm:inline-flex"
+          >
+            {cta.label}
             <ArrowRight
               aria-hidden="true"
               className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"

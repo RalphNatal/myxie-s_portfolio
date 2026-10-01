@@ -8,6 +8,7 @@ import type { SectionId } from "@/data/types";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { useIsClient } from "@/hooks/useIsClient";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
+import { getNavbarCta, visibleNavLinks } from "@/lib/content";
 import { DURATION, EASE_OUT } from "@/lib/motion";
 import { cn, scrollToSection } from "@/lib/utils";
 import { Logo } from "./Logo";
@@ -20,6 +21,7 @@ interface MobileMenuProps {
 }
 
 const { navigation, profile } = portfolio;
+const cta = getNavbarCta();
 
 /** Slide-in navigation panel for small screens. Portaled so the header's blur can't clip it. */
 export function MobileMenu({ id, open, activeId, onClose }: MobileMenuProps) {
@@ -83,7 +85,7 @@ export function MobileMenu({ id, open, activeId, onClose }: MobileMenuProps) {
               className="flex-1 overflow-y-auto px-4 py-6 sm:px-6"
             >
               <ul className="space-y-1">
-                {navigation.links.map((link) => {
+                {visibleNavLinks.map((link) => {
                   const isActive = link.sectionId === activeId;
                   return (
                     <li key={link.sectionId}>
@@ -109,8 +111,13 @@ export function MobileMenu({ id, open, activeId, onClose }: MobileMenuProps) {
             </nav>
 
             <div className="shrink-0 space-y-4 border-t border-line p-4 sm:p-6">
-              <Button href={profile.bookingUrl} external className="w-full">
-                {navigation.bookCallLabel}
+              <Button
+                href={cta.href}
+                external={cta.external}
+                onClick={cta.external ? undefined : navigateTo("contact")}
+                className="w-full"
+              >
+                {cta.label}
               </Button>
               <a
                 href={`mailto:${profile.email}`}

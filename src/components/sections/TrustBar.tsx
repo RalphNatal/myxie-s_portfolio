@@ -1,13 +1,14 @@
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { portfolio } from "@/data/portfolio";
+import { visibleToolkit } from "@/lib/content";
 
-const { toolkit, sections } = portfolio;
+const { sections } = portfolio;
 
 // Every Advanced or Proficient tool from the toolkit, so the two lists never disagree.
 const everydayTools = [
   ...new Set(
-    toolkit
+    visibleToolkit
       .flatMap((category) => category.tools)
       .filter((tool) => tool.level !== "Familiar")
       .map((tool) => tool.name),

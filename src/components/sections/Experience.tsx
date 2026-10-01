@@ -36,7 +36,7 @@ export function Experience() {
             return (
               <Reveal
                 as="li"
-                key={`${item.role}-${item.start}`}
+                key={`${item.role}-${item.company}`}
                 delay={staggerDelay(index)}
                 className={cn("relative pl-10", !isLast && "pb-12")}
               >
@@ -56,7 +56,7 @@ export function Experience() {
                 />
 
                 <p className="text-sm font-medium text-muted">
-                  {item.start} – {item.end}
+                  {item.period ?? `${item.start} – ${item.end}`}
                 </p>
                 <h3 className="mt-2 text-xl font-medium text-ink">{item.role}</h3>
                 <p className="mt-1 text-muted">{item.company}</p>

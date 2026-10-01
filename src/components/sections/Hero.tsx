@@ -3,12 +3,14 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { portfolio } from "@/data/portfolio";
 import type { Availability, Stat } from "@/data/types";
+import { getBookingCta, isSectionShown } from "@/lib/content";
 import { getFullName } from "@/lib/text";
 import { cn } from "@/lib/utils";
 import { HeroPortrait } from "./HeroPortrait";
 
 const { profile, stats, sections } = portfolio;
 const copy = sections.hero;
+const primaryCta = getBookingCta(copy.primaryCtaLabel);
 
 // Supporting hero details animate with CSS so they play on the prerendered page before JavaScript loads.
 // The headline and value proposition stay static: they are the Largest Contentful Paint, and fading them
@@ -47,16 +49,18 @@ export function Hero() {
           <div
             className={cn("mt-10 flex flex-col gap-3 [animation-delay:120ms] sm:flex-row", enter)}
           >
-            <Button href={profile.bookingUrl} external>
-              {copy.primaryCtaLabel}
+            <Button href={primaryCta.href} external={primaryCta.external}>
+              {primaryCta.label}
               <ArrowRight
                 aria-hidden="true"
                 className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
               />
             </Button>
-            <Button href="#work" variant="secondary">
-              {copy.secondaryCtaLabel}
-            </Button>
+            {isSectionShown("work") && (
+              <Button href="#work" variant="secondary">
+                {copy.secondaryCtaLabel}
+              </Button>
+            )}
           </div>
 
           <HeroStats

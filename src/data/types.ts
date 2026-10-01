@@ -33,9 +33,13 @@ export type IconName =
   | "ChartColumn";
 
 export type SocialPlatform =
-  "LinkedIn" | "Upwork" | "OnlineJobs" | "Facebook" | "Instagram" | "WhatsApp" | "Website";
+  "LinkedIn" | "Upwork" | "OnlineJobs.ph" | "Facebook" | "Instagram" | "WhatsApp" | "Website";
 
+/** Levels shown on the site. */
 export type ProficiencyLevel = "Advanced" | "Proficient" | "Familiar";
+
+/** A tool marked "I don't use it" is kept in the data but never shown. */
+export type ToolLevel = ProficiencyLevel | "I don't use it";
 
 /** Ids of the page sections, used by the navigation links. */
 export type SectionId =
@@ -77,6 +81,8 @@ export interface SocialLink {
 export interface Profile {
   firstName: string;
   lastName: string;
+  /** What friends call you; shown in a small line in the footer. Optional. */
+  nickname?: string;
   role: string;
   headline: string;
   subheadline: string;
@@ -86,15 +92,17 @@ export interface Profile {
   timezone: string;
   workingHours: string;
   availability: Availability;
-  /** Path to your photo in /public, e.g. "/images/myxie.jpg". Empty shows your initials. */
+  /** Path to your photo in /public, e.g. "/images/michaella.jpg". Empty, or a missing file, shows your initials. */
   portrait: string;
   portraitAlt?: string;
   resumeUrl: string;
   email: string;
-  bookingUrl: string;
-  /** Formspree form id (the part after formspree.io/f/). */
+  /** Calendly or similar link. Without one, every "Book a Call" button becomes "Email Me". */
+  bookingUrl?: string;
+  /** Formspree form id (the part after formspree.io/f/). Empty sends inquiries by email instead. */
   formspreeId: string;
-  socials: SocialLink[];
+  /** Only the platforms listed here are shown. */
+  socials?: SocialLink[];
 }
 
 export interface Stat {
@@ -135,13 +143,11 @@ export interface CaseStudy {
   imageAlt?: string;
   /** Tools used on this project, listed in the full write-up. */
   tools?: string[];
-  /** Shows a "Sample" badge so placeholder work is never mistaken for real work. */
-  isSample: boolean;
 }
 
 export interface Tool {
   name: string;
-  level: ProficiencyLevel;
+  level: ToolLevel;
 }
 
 export interface ToolCategory {
@@ -149,21 +155,21 @@ export interface ToolCategory {
   tools: Tool[];
 }
 
-export interface ExperienceItem {
+interface ExperienceBase {
   role: string;
   company: string;
-  start: string;
-  end: string;
   achievements: string[];
 }
+
+/** Give either `start` and `end` (e.g. "2017" and "2025"), or a free-text `period` (e.g. "1.5 months"). */
+export type ExperienceItem = ExperienceBase &
+  ({ start: string; end: string; period?: never } | { period: string; start?: never; end?: never });
 
 export interface Testimonial {
   quote: string;
   name: string;
   role: string;
   company: string;
-  /** Shows a "Sample" badge so placeholder reviews are never mistaken for real ones. */
-  isSample: boolean;
 }
 
 export interface Package {
@@ -196,6 +202,10 @@ export interface NavLink {
 export interface Navigation {
   links: NavLink[];
   bookCallLabel: string;
+  /** Replaces the "Book a Call" buttons when there is no booking link. */
+  emailCtaLabel: string;
+  /** Subject line used by the "Email Me" buttons. */
+  emailCtaSubject: string;
   primaryNavLabel: string;
   menuLabel: string;
   openMenuLabel: string;
@@ -317,6 +327,8 @@ export interface FooterCopy {
   quickLinksLabel: string;
   socialsLabel: string;
   backToTopLabel: string;
+  /** Use {nickname}. Shown only when the profile has a nickname. */
+  nicknameLine: string;
   /** Use {year} and {name}. */
   copyright: string;
 }
@@ -325,7 +337,6 @@ export interface InterfaceLabels {
   skipToContent: string;
   themeToggle: string;
   opensInNewTab: string;
-  sampleBadge: string;
 }
 
 export interface SectionsCopy {

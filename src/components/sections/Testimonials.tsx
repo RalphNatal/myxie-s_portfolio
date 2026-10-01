@@ -2,7 +2,6 @@ import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { Section } from "@/components/layout/Section";
-import { SampleBadge } from "@/components/ui/Badge";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { portfolio } from "@/data/portfolio";
@@ -23,6 +22,48 @@ const slideVariants = {
 };
 
 export function Testimonials() {
+  const [onlyTestimonial] = testimonials;
+  if (!onlyTestimonial) return null;
+
+  if (testimonials.length === 1) {
+    return (
+      <Section id="testimonials" labelledBy="testimonials-heading" tone="muted">
+        <Reveal>
+          <SectionHeading
+            id="testimonials-heading"
+            eyebrow={copy.eyebrow}
+            title={copy.title}
+            intro={copy.intro}
+            align="center"
+          />
+        </Reveal>
+        <Reveal className="mx-auto mt-12 max-w-3xl md:mt-16">
+          <TestimonialCard testimonial={onlyTestimonial} centered />
+        </Reveal>
+      </Section>
+    );
+  }
+
+  return (
+    <Section id="testimonials" labelledBy="testimonials-heading" tone="muted">
+      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20">
+        <Reveal>
+          <SectionHeading
+            id="testimonials-heading"
+            eyebrow={copy.eyebrow}
+            title={copy.title}
+            intro={copy.intro}
+          />
+        </Reveal>
+        <Reveal>
+          <TestimonialCarousel />
+        </Reveal>
+      </div>
+    </Section>
+  );
+}
+
+function TestimonialCarousel() {
   // Direction (1 = forward, -1 = back) decides which way slides move.
   const [[index, direction], setSlide] = useState<[number, number]>([0, 0]);
   const count = testimonials.length;
@@ -41,104 +82,97 @@ export function Testimonials() {
   }
 
   return (
-    <Section id="testimonials" labelledBy="testimonials-heading" tone="muted">
-      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20">
-        <Reveal>
-          <SectionHeading
-            id="testimonials-heading"
-            eyebrow={copy.eyebrow}
-            title={copy.title}
-            intro={copy.intro}
-          />
-        </Reveal>
-
-        <Reveal>
-          <div role="region" aria-roledescription="carousel" aria-label={copy.carouselLabel}>
-            {/* Every slide is rendered invisibly in the same grid cell so the height never jumps. */}
-            <div className="grid" aria-live="polite">
-              {testimonials.map((testimonial) => (
-                <div
-                  key={testimonial.name}
-                  aria-hidden="true"
-                  className="invisible [grid-area:1/1]"
-                >
-                  <TestimonialCard testimonial={testimonial} />
-                </div>
-              ))}
-              <AnimatePresence initial={false} custom={direction}>
-                <motion.div
-                  key={index}
-                  role="group"
-                  aria-roledescription="slide"
-                  aria-label={fillTemplate(copy.slideLabel, { number: index + 1, total: count })}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: DURATION.slow, ease: EASE_OUT }}
-                  drag={count > 1 ? "x" : false}
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
-                  onDragEnd={handleDragEnd}
-                  className="touch-pan-y [grid-area:1/1] active:cursor-grabbing"
-                >
-                  <TestimonialCard testimonial={active} />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {count > 1 && (
-              <div className="mt-6 flex items-center justify-between gap-6">
-                <div className="flex items-center">
-                  {testimonials.map((testimonial, dot) => {
-                    const isCurrent = dot === index;
-                    return (
-                      <button
-                        key={testimonial.name}
-                        type="button"
-                        onClick={() => goTo(dot)}
-                        aria-label={fillTemplate(copy.goToLabel, { number: dot + 1 })}
-                        aria-current={isCurrent ? "true" : undefined}
-                        className="group grid size-6 place-items-center rounded-full"
-                      >
-                        <span
-                          className={cn(
-                            "h-1.5 rounded-full transition-all duration-300 ease-out",
-                            isCurrent
-                              ? "w-6 bg-accent-strong"
-                              : "w-1.5 bg-muted/40 group-hover:bg-muted",
-                          )}
-                        />
-                      </button>
-                    );
-                  })}
-                </div>
-                <div className="flex gap-2">
-                  <ArrowButton label={copy.previousLabel} onClick={() => paginate(-1)}>
-                    <ChevronLeft aria-hidden="true" className="size-5" />
-                  </ArrowButton>
-                  <ArrowButton label={copy.nextLabel} onClick={() => paginate(1)}>
-                    <ChevronRight aria-hidden="true" className="size-5" />
-                  </ArrowButton>
-                </div>
-              </div>
-            )}
+    <div role="region" aria-roledescription="carousel" aria-label={copy.carouselLabel}>
+      {/* Every slide is rendered invisibly in the same grid cell so the height never jumps. */}
+      <div className="grid" aria-live="polite">
+        {testimonials.map((testimonial) => (
+          <div key={testimonial.name} aria-hidden="true" className="invisible [grid-area:1/1]">
+            <TestimonialCard testimonial={testimonial} />
           </div>
-        </Reveal>
+        ))}
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            key={index}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={fillTemplate(copy.slideLabel, { number: index + 1, total: count })}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: DURATION.slow, ease: EASE_OUT }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
+            className="touch-pan-y [grid-area:1/1] active:cursor-grabbing"
+          >
+            <TestimonialCard testimonial={active} />
+          </motion.div>
+        </AnimatePresence>
       </div>
-    </Section>
+
+      <div className="mt-6 flex items-center justify-between gap-6">
+        <div className="flex items-center">
+          {testimonials.map((testimonial, dot) => {
+            const isCurrent = dot === index;
+            return (
+              <button
+                key={testimonial.name}
+                type="button"
+                onClick={() => goTo(dot)}
+                aria-label={fillTemplate(copy.goToLabel, { number: dot + 1 })}
+                aria-current={isCurrent ? "true" : undefined}
+                className="group grid size-6 place-items-center rounded-full"
+              >
+                <span
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-300 ease-out",
+                    isCurrent ? "w-6 bg-accent-strong" : "w-1.5 bg-muted/40 group-hover:bg-muted",
+                  )}
+                />
+              </button>
+            );
+          })}
+        </div>
+        <div className="flex gap-2">
+          <ArrowButton label={copy.previousLabel} onClick={() => paginate(-1)}>
+            <ChevronLeft aria-hidden="true" className="size-5" />
+          </ArrowButton>
+          <ArrowButton label={copy.nextLabel} onClick={() => paginate(1)}>
+            <ChevronRight aria-hidden="true" className="size-5" />
+          </ArrowButton>
+        </div>
+      </div>
+    </div>
   );
 }
 
-function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+function TestimonialCard({
+  testimonial,
+  centered = false,
+}: {
+  testimonial: Testimonial;
+  centered?: boolean;
+}) {
   return (
-    <figure className="flex h-full select-none flex-col rounded-card border border-line bg-surface p-6 shadow-soft sm:p-10">
+    <figure
+      className={cn(
+        "flex h-full select-none flex-col rounded-card border border-line bg-surface p-6 shadow-soft sm:p-10",
+        centered && "items-center text-center",
+      )}
+    >
       <Quote aria-hidden="true" className="size-8 fill-accent/15 text-accent" />
       <blockquote className="mt-6 flex-1 font-display text-xl font-normal italic leading-snug tracking-heading text-ink sm:text-2xl sm:leading-snug">
         <p>{testimonial.quote}</p>
       </blockquote>
-      <figcaption className="mt-8 flex items-center gap-4 border-t border-line pt-6">
+      <figcaption
+        className={cn(
+          "mt-8 flex items-center gap-4 border-t border-line pt-6",
+          centered && "justify-center self-stretch text-left",
+        )}
+      >
         <span
           aria-hidden="true"
           className="grid size-11 shrink-0 place-items-center rounded-full bg-accent/10 font-display text-base font-semibold text-accent-strong"
@@ -146,10 +180,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           {getNameInitials(testimonial.name)}
         </span>
         <div className="min-w-0">
-          <p className="flex flex-wrap items-center gap-2 font-semibold text-ink">
-            {testimonial.name}
-            {testimonial.isSample && <SampleBadge />}
-          </p>
+          <p className="font-semibold text-ink">{testimonial.name}</p>
           <p className="text-sm text-muted">
             {testimonial.role}
             <span

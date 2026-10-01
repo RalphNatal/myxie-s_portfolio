@@ -1,5 +1,4 @@
 import { ArrowUpRight } from "lucide-react";
-import { SampleBadge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { portfolio } from "@/data/portfolio";
 import type { CaseStudy } from "@/data/types";
@@ -19,10 +18,7 @@ export function CaseStudyCard({ caseStudy, variant, onOpen }: CaseStudyCardProps
       <CaseStudyVisual caseStudy={caseStudy} variant={variant} className="aspect-[16/9]" />
 
       <div className="flex flex-1 flex-col p-6 sm:p-8">
-        <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
-          <span>{caseStudy.clientType}</span>
-          {caseStudy.isSample && <SampleBadge />}
-        </div>
+        <p className="text-sm text-muted">{caseStudy.clientType}</p>
 
         <h3 className="mt-3 text-xl font-medium text-ink">
           {/* The ::after overlay stretches this button across the card so the whole card is clickable. */}

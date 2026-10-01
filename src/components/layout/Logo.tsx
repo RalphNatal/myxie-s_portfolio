@@ -1,6 +1,6 @@
 import type { MouseEventHandler } from "react";
 import { portfolio } from "@/data/portfolio";
-import { getInitials } from "@/lib/text";
+import { getFullName, getInitials } from "@/lib/text";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -8,7 +8,7 @@ interface LogoProps {
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
-/** Monogram and first name, linking back to the top of the page. */
+/** Monogram and full name, linking back to the top of the page. */
 export function Logo({ className, onClick }: LogoProps) {
   const { profile } = portfolio;
 
@@ -24,8 +24,8 @@ export function Logo({ className, onClick }: LogoProps) {
       >
         {getInitials(profile)}
       </span>
-      <span className="font-display text-lg font-semibold tracking-heading text-ink">
-        {profile.firstName}
+      <span className="whitespace-nowrap font-display text-lg font-semibold tracking-heading text-ink">
+        {getFullName(profile)}
       </span>
     </a>
   );

@@ -1,14 +1,12 @@
 import type { ReactNode } from "react";
-import { portfolio } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
-type Tone = "sage" | "accent" | "neutral" | "sample";
+type Tone = "sage" | "accent" | "neutral";
 
 const tones: Record<Tone, string> = {
   sage: "bg-sage/15 text-sage-strong",
   accent: "bg-accent-strong text-on-accent shadow-soft",
   neutral: "bg-subtle text-muted",
-  sample: "border border-dashed border-muted/60 uppercase tracking-eyebrow text-muted",
 };
 
 interface BadgeProps {
@@ -28,14 +26,5 @@ export function Badge({ tone = "neutral", className, children }: BadgeProps) {
     >
       {children}
     </span>
-  );
-}
-
-/** Marks placeholder content so it's never mistaken for a real client story or review. */
-export function SampleBadge({ className }: { className?: string }) {
-  return (
-    <Badge tone="sample" className={cn("px-2 py-0.5", className)}>
-      {portfolio.labels.sampleBadge}
-    </Badge>
   );
 }

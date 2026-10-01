@@ -14,7 +14,15 @@ function toAbsoluteUrl(siteUrl: string, path: string): string {
   return new URL(path.replace(/^\/+/, ""), siteUrl).href;
 }
 
-export function buildStructuredData({ meta, profile, services }: Portfolio) {
+export interface HeadTagOptions {
+  /** False when the portrait file isn't in /public yet, so search engines aren't sent to a missing image. */
+  hasPortrait?: boolean;
+}
+
+export function buildStructuredData(
+  { meta, profile, services }: Portfolio,
+  { hasPortrait = true }: HeadTagOptions = {},
+) {
   const name = getFullName(profile);
   const { city, country } = parseLocation(profile.location);
   const personId = `${meta.siteUrl}#person`;
@@ -23,7 +31,8 @@ export function buildStructuredData({ meta, profile, services }: Portfolio) {
     addressLocality: city,
     addressCountry: country,
   };
-  const sameAs = profile.socials.map((social) => social.url);
+  const socialUrls = (profile.socials ?? []).map((social) => social.url);
+  const sameAs = socialUrls.length > 0 ? { sameAs: socialUrls } : {};
 
   return {
     "@context": "https://schema.org",
@@ -32,16 +41,18 @@ export function buildStructuredData({ meta, profile, services }: Portfolio) {
         "@type": "Person",
         "@id": personId,
         name,
+        ...(profile.nickname && { alternateName: profile.nickname }),
         givenName: profile.firstName,
         familyName: profile.lastName,
         jobTitle: profile.role,
         description: meta.description,
         url: meta.siteUrl,
         email: `mailto:${profile.email}`,
-        ...(profile.portrait && { image: toAbsoluteUrl(meta.siteUrl, profile.portrait) }),
+        ...(profile.portrait &&
+          hasPortrait && { image: toAbsoluteUrl(meta.siteUrl, profile.portrait) }),
         address,
         knowsAbout: services.map((service) => service.title),
-        sameAs,
+        ...sameAs,
       },
       {
         "@type": "ProfessionalService",
@@ -68,14 +79,14 @@ export function buildStructuredData({ meta, profile, services }: Portfolio) {
             },
           })),
         },
-        sameAs,
+        ...sameAs,
       },
     ],
   };
 }
 
 /** Builds the <head> tags (title, description, Open Graph, Twitter, JSON-LD) from portfolio.ts. */
-export function renderHeadTags(portfolio: Portfolio): string {
+export function renderHeadTags(portfolio: Portfolio, options: HeadTagOptions = {}): string {
   const { meta, profile } = portfolio;
   const image = toAbsoluteUrl(meta.siteUrl, meta.ogImage);
   const imageAlt = meta.ogImageAlt ?? meta.siteTitle;
@@ -83,7 +94,10 @@ export function renderHeadTags(portfolio: Portfolio): string {
     `<meta ${attribute}="${key}" content="${escapeAttribute(content)}" />`;
 
   // Escaping "<" keeps any "</script>" inside the data from closing the JSON-LD block early.
-  const structuredData = JSON.stringify(buildStructuredData(portfolio)).replace(/</g, "\\u003c");
+  const structuredData = JSON.stringify(buildStructuredData(portfolio, options)).replace(
+    /</g,
+    "\\u003c",
+  );
 
   return [
     `<title>${escapeAttribute(meta.siteTitle)}</title>`,

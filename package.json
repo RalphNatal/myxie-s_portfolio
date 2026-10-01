@@ -2,7 +2,7 @@
   "name": "myxie-portfolio",
   "private": true,
   "version": "1.0.0",
-  "description": "Portfolio site for Myxie, an e-commerce and operations virtual assistant.",
+  "description": "Portfolio site for Michaella (Myxie) Pascua, an e-commerce and operations virtual assistant.",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"
